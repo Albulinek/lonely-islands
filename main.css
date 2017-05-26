@@ -1,0 +1,73 @@
+#progressBar_wrapper {
+	border: 1px solid black;
+    width: 50%;
+    background-color: grey;
+}
+#progressBar_HP {
+    width: 100%;
+	border-right: 1px solid black;
+    height: 30px;
+    background-color: #4CAF50;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white; 
+}
+
+#progressBar_Hunger {
+    width: 0%;
+    height: 30px;
+    background-color: #4CAF50;
+    text-align: center; /* To center it horizontally (if you want) */
+    line-height: 30px; /* To center it vertically */
+    color: white; 
+}
+
+#console {
+	font-size: 1em;
+	height: 10em;
+	resize: none;
+	width: 50%;
+	border: solid 0.5px black;
+	line-height: 1em;
+	padding: 0px;
+	overflow: hidden;
+}
+/* inventory */
+
+#inventory {
+	border: 1px solid black;
+	width: 250px;
+	height: 250px;
+}
+
+
+/* Start of crafting table */
+
+.divTable{
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	display: table;
+	table-layout: fixed;
+	overflow: hidden;
+}
+
+.divTableRow {
+	display: table-row;
+}
+
+.divTableCell{
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	display: table-cell;
+	padding: 0px;
+	height: 64px;
+	width: 64px;
+	vertical-align: middle;
+    text-align:center;
+}
+
+.divTableBody {
+	display: table-row-group;
+}
+
+/* End of crafting table */
