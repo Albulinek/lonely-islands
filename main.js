@@ -35,7 +35,20 @@ function buyCursor() {
 ;
 
 function showHidden(element) {
-    element.style.visibility = 'visible';
+    element.style.display = 'initial';
+}
+
+
+function hide(element) {
+	element.style.display = 'none';
+}
+
+
+//EDIT THIS!
+function changePage(page) {
+	hide(document.getElementById('island'));
+	hide(document.getElementById('changelog'));
+	showHidden(document.getElementById(page));
 }
 
 function startGame() {
@@ -116,12 +129,29 @@ function createInventory(x, y) {
     }
 }
 
-$(function () {
-
-});
 
 function setDroppableToInv(elemID) {
-    $(elemID).draggable({});
+    $(elemID).draggable({
+		start: function (event, ui) {
+            console.log("dragging");
+            var g = getElementCoords(elemID);
+            var inv = getElementCoords(document.getElementById("inventory"));
+            firstOccurrence = false;
+            //ui.draggable.draggable('option','revert',true); event which returns old possition
+            for (i = 1; i <= Math.floor(inventoryX / iconSize) + 1; i++) {
+                for (j = 1; j <= Math.floor(inventoryY / iconSize) + 1; j++) {
+                    if (!firstOccurrence) {
+                        if ((g[0] + iconSize / 2 <= i * iconSize + inv[0]) && (g[1] + iconSize / 2 <= j * iconSize + inv[1])) {
+                            firstOccurrence = true;
+                            k = (Math.floor(inventoryX / iconSize) + 1) * (j - 1) + (i - 1);
+                            inventoryArray[k] = null;
+                            console.log(inventoryArray);
+                        }
+                    }
+                }
+            }
+        }
+	});
     $("#inventory").droppable({
         accept: elemID,
         tolerance: "touch",
@@ -138,13 +168,14 @@ function setDroppableToInv(elemID) {
                             firstOccurrence = true;
                             k = (Math.floor(inventoryX / iconSize) + 1) * (j - 1) + (i - 1);
                             inventoryArray[k] = elemID;
+							elemID.style.position = "absolute";
+							elemID.style.left = (inv[0] + (i - 1) * iconSize) + "px";
+							elemID.style.top = (inv[1] + (j - 1) * iconSize) + "px";
                             console.log(inventoryArray);
                         }
                     }
                 }
             }
-
-            console.log(g);
         }
     });
     $(elemID).droppable({
@@ -163,8 +194,14 @@ function catchFood() {
     g.setAttribute("src", "test.png");
     g.setAttribute("class", "position:absolute;");
     setDroppableToInv(g);
+	$()
+	document.getElementById('island').appendChild(g);
     console.log(g);
-    document.body.appendChild(g);
+    //document.body.appendChild(g);
+	
+	//test part
+	fish = new item("fish");
+	fish.getName();
 
 }
 
