@@ -2,8 +2,8 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = "game";
+$password = "kolecko";
+$dbname = "lonely_islands";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $dbname);
