@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "kolecko";
+$password = "";
 $dbname = "lonely_islands";
 
 // Create connection
