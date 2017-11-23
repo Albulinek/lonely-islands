@@ -40,15 +40,15 @@ function showHidden(element) {
 
 
 function hide(element) {
-	element.style.display = 'none';
+    element.style.display = 'none';
 }
 
 
 //EDIT THIS!
 function changePage(page) {
-	hide(document.getElementById('island'));
-	hide(document.getElementById('changelog'));
-	showHidden(document.getElementById(page));
+    hide(document.getElementById('island'));
+    hide(document.getElementById('changelog'));
+    showHidden(document.getElementById(page));
 }
 
 function startGame() {
@@ -77,7 +77,7 @@ $(document).ready(function () {
     inventoryY = canvas.height();
     createInventory(inventoryX, inventoryY);
     createInventoryArray(inventoryX, inventoryY);
-    console.log(getElementCoords(document.getElementById("progressBar_HP")));
+    console.log(getElementCoords(document.getElementById("progressBar_wrapper")));
     //INIT: Game
     startGame();
 });
@@ -108,31 +108,34 @@ function createInventoryArray(x, y) {
 
 
 function createInventory(x, y) {
+    console.log("x " + x);
+    console.log("y " + y);
     var c = document.getElementById('inventory').getContext("2d");
-    if (x / iconSize > 1) {
-        for (i = 1; i <= Math.floor(x / iconSize) + 1; i++) {
-            c.lineWidth = 1;
-            c.beginPath();
-            c.moveTo(i * iconSize + 0.5, 0);
-            c.lineTo(i * iconSize + 0.5, y);
-            c.stroke();
-        }
+
+    for (i = 0; i <= Math.floor(x / iconSize) + 1; i++) {
+        c.lineWidth = 1;
+        c.beginPath();
+        c.moveTo(i * iconSize +0.5 , 0.5);
+        c.lineTo(i * iconSize +0.5, y+0.5);
+        c.stroke();
     }
-    if (y / iconSize > 1) {
-        for (i = 1; i <= Math.floor(y / iconSize) + 1; i++) {
-            c.lineWidth = 1;
-            c.beginPath();
-            c.moveTo(0, i * iconSize + 0.5);
-            c.lineTo(x, i * iconSize + 0.5);
-            c.stroke();
-        }
+    
+
+
+    for (i = 0; i <= Math.floor(y / iconSize) + 1; i++) {
+        c.lineWidth = 1;
+        c.beginPath();
+        c.moveTo(0.5, i * iconSize+0.5);
+        c.lineTo(x+0.5, i * iconSize+0.5);
+        c.stroke();
     }
+
 }
 
 
 function setDroppableToInv(elemID) {
     $(elemID).draggable({
-		start: function (event, ui) {
+        start: function (event, ui) {
             console.log("dragging");
             var g = getElementCoords(elemID);
             var inv = getElementCoords(document.getElementById("inventory"));
@@ -151,7 +154,7 @@ function setDroppableToInv(elemID) {
                 }
             }
         }
-	});
+    });
     $("#inventory").droppable({
         accept: elemID,
         tolerance: "touch",
@@ -168,9 +171,9 @@ function setDroppableToInv(elemID) {
                             firstOccurrence = true;
                             k = (Math.floor(inventoryX / iconSize) + 1) * (j - 1) + (i - 1);
                             inventoryArray[k] = elemID;
-							elemID.style.position = "absolute";
-							elemID.style.left = (inv[0] + (i - 1) * iconSize) + "px";
-							elemID.style.top = (inv[1] + (j - 1) * iconSize) + "px";
+                            elemID.style.position = "absolute";
+                            elemID.style.left = (inv[0] + (i - 1) * iconSize) + "px";
+                            elemID.style.top = (inv[1] + (j - 1) * iconSize) + "px";
                             console.log(inventoryArray);
                         }
                     }
@@ -187,21 +190,24 @@ function setDroppableToInv(elemID) {
 }
 
 
-function catchFood() {
+function catchFood(number) {
     roll = rollDice(2);
     appendText("ROLL");
-    g = document.createElement("img");
-    g.setAttribute("src", "test.png");
-    g.setAttribute("class", "position:absolute;");
-    setDroppableToInv(g);
-	$()
-	document.getElementById('island').appendChild(g);
+
+    g = new item("Jmkeno");
+    g.setDroppable();
+
+    console.log(number);
+
+
+
+
     console.log(g);
     //document.body.appendChild(g);
-	
-	//test part
-	fish = new item("fish");
-	fish.getName();
+
+    //test part
+    fish = new item("fish");
+    fish.getName();
 
 }
 
