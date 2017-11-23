@@ -190,25 +190,13 @@ function setDroppableToInv(elemID) {
 }
 
 
-function catchFood(number) {
+function catchFood() {
     roll = rollDice(2);
     appendText("ROLL");
 
-    g = new item("Jmkeno");
+    var g = new Item("Name");
     g.setDroppable();
-
-    console.log(number);
-
-
-
-
-    console.log(g);
-    //document.body.appendChild(g);
-
-    //test part
-    fish = new item("fish");
-    fish.getName();
-
+    console.log(g.toString());
 }
 
 
