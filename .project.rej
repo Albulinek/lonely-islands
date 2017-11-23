@@ -1,0 +1,6 @@
+diff a/.project b/.project	(rejected hunks)
+@@ -0,3 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
+ <projectDescription>
+ 	<name>www_LonelyIslands</name>
+ 	<comment></comment>
