@@ -194,20 +194,10 @@ function catchFood(number) {
     roll = rollDice(2);
     appendText("ROLL");
 
-    g = new item("Jmkeno");
+    var g = new Item("Jmkeno");
     g.setDroppable();
-
-    console.log(number);
-
-
-
-
-    console.log(g);
-    //document.body.appendChild(g);
-
-    //test part
-    fish = new item("fish");
-    fish.getName();
+    
+    console.log(g.toString());
 
 }
 
