@@ -115,44 +115,38 @@ function createInventory(x, y) {
     for (i = 0; i <= Math.floor(x / iconSize) + 1; i++) {
         c.lineWidth = 1;
         c.beginPath();
-        c.moveTo(i * iconSize +0.5 , 0.5);
-        c.lineTo(i * iconSize +0.5, y+0.5);
+        c.moveTo(i * iconSize + 0.5, 0.5);
+        c.lineTo(i * iconSize + 0.5, y + 0.5);
         c.stroke();
     }
-    
+
 
 
     for (i = 0; i <= Math.floor(y / iconSize) + 1; i++) {
         c.lineWidth = 1;
         c.beginPath();
-        c.moveTo(0.5, i * iconSize+0.5);
-        c.lineTo(x+0.5, i * iconSize+0.5);
+        c.moveTo(0.5, i * iconSize + 0.5);
+        c.lineTo(x + 0.5, i * iconSize + 0.5);
         c.stroke();
     }
 
 }
 
-
+/**
+ * Playing with documentation
+ * 
+ * @function setDropableToInv
+ **
+ *  */
 function setDroppableToInv(elemID) {
     $(elemID).draggable({
         start: function (event, ui) {
-            console.log("dragging");
+            console.log("dragging" + elemID);
             var g = getElementCoords(elemID);
             var inv = getElementCoords(document.getElementById("inventory"));
             firstOccurrence = false;
+            //console.log("Is this first occurence: "+firstOccurrence);            //TODO: Event for returning item back in case bad handling
             //ui.draggable.draggable('option','revert',true); event which returns old possition
-            for (i = 1; i <= Math.floor(inventoryX / iconSize) + 1; i++) {
-                for (j = 1; j <= Math.floor(inventoryY / iconSize) + 1; j++) {
-                    if (!firstOccurrence) {
-                        if ((g[0] + iconSize / 2 <= i * iconSize + inv[0]) && (g[1] + iconSize / 2 <= j * iconSize + inv[1])) {
-                            firstOccurrence = true;
-                            k = (Math.floor(inventoryX / iconSize) + 1) * (j - 1) + (i - 1);
-                            inventoryArray[k] = null;
-                            console.log(inventoryArray);
-                        }
-                    }
-                }
-            }
         }
     });
     $("#inventory").droppable({
@@ -174,31 +168,20 @@ function setDroppableToInv(elemID) {
                             elemID.style.position = "absolute";
                             elemID.style.left = (inv[0] + (i - 1) * iconSize) + "px";
                             elemID.style.top = (inv[1] + (j - 1) * iconSize) + "px";
-                            console.log(inventoryArray);
+                            //console.log(inventoryArray);
                         }
                     }
                 }
             }
         }
     });
-    $(elemID).droppable({
-        greedy: true,
-        tolerance: 'touch'
-
-    }
-    );
 }
 
 
 function catchFood(number) {
     roll = rollDice(2);
     appendText("ROLL");
-
-    var g = new Item("Jmkeno");
-    g.setDroppable();
-    
-    console.log(g.toString());
-
+    var g = new Item("Jmeno");
 }
 
 
